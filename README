@@ -1,0 +1,6 @@
+start server - ttserver
+
+send key and value with socket - gcc my.c && ./a.out key value 
+
+check - tcrmgr list localhost
+    
