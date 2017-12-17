@@ -1,0 +1,36 @@
+# Работа с сервером [Tokyo Tyrant](http://fallabs.com/tokyotyrant/)
+#Для начала необходимо скачать два пакета : 
+#Tokyo Tyrant http://fallabs.com/tokyotyrant/tokyotyrant-1.1.41.tar.gz
+#и 
+# Tokyo Cabinet http://fallabs.com/tokyocabinet/tokyocabinet-1.4.48.tar.gz
+# Следуя следующим командам, распакуйте эти документы
+mkdir ~/tokyo
+mv ./tokyocabinet-1.4.42.tar.gz ~/tokyo/
+mv ./tokyotyrant-1.1.40.tar.gz ~/tokyo/
+cd ~/tokyo
+tar -xvzf tokyocabinet-1.4.42.tar.gz
+tar -xvzf tokyotyrant-1.1.40.tar.gz
+Возможно, когда Вы будете ставить эту связку, версии уже изменятся (работа над ними идёт довольно активно). 
+Для сборки tokyo Cabinet потребуются пакеты libbz2-dev и zlib1g-dev. Если не установить первый, на стадии конфигурации 
+Вы получите сообщение configure: error: bzlib.h is required. Если второй — сообщение будет zlib.h is required. 
+Поэтому поставим оба сразу, чтобы потом к этому не возвращаться:
+apt-get install libbz2-dev
+apt-get install zlib1g-dev
+Сборка
+cd tokyocabinet-1.4.42
+./configure
+make
+make install
+make clean
+ 
+cd ../tokyotyrant-1.1.40
+./configure
+make
+make install
+make clean
+
+Итак, если всё прошло правильно, сервер Tokyo Tyrant должен быть готов к работе. 
+В той же директории, где мы его собирали, выполняем:
+./ttservctl start 
+Если при запуске этого файла произошла ошибка, то необходимо изменить значение basedir (в ttservctl) на любой другой путь.
+далее см README.md
