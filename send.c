@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
     int sockfd, portno; //Сокет и номер порта
     struct sockaddr_in addr; //Адрес сервера
     struct hostent *server;//
-    sockfd = socket(AF_INET, SOCK_STREAM, 0);//инициализация сокета
+    sockfd = socket(AF_INET, SOCK_STREAM, 0);//создание сокета для сетевого протокола IPv4((надёжная потокоориентированная служба (сервис) или потоковый сокет))
     if (sockfd < 0)
         error("ERROR opening socket");
     server = gethostbyname("localhost");
@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
     }
     addr.sin_family = AF_INET; //Указываем тип адреса
     addr.sin_port = htons(1978); //Указываем порт
-    addr.sin_addr.s_addr = htonl(INADDR_LOOPBACK); // INADDR_LOOPBACK = 127.0.0.1
+    addr.sin_addr.s_addr = htonl(INADDR_LOOPBACK); // INADDR_LOOPBACK = 127.0.0.1 Функция htonl осуществляет перевод целого числа из порядка байт, принятого на компьютере, в сетевой порядок байт.
     if(connect(sockfd, (struct sockaddr *)&addr, sizeof(addr)) < 0)
     error("ERROR connecting");
     else printf("Connected to server\n");
